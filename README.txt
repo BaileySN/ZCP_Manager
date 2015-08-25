@@ -1,16 +1,16 @@
-# ZCP_Manager
+ZCP-Manager
 
-Dieses Tool soll das erstellen von Benutzerkonten in einer Zarafa Umgebung mit DB-Plugin und externen Providern erleichtern.
+Dieses Tool soll das erstellen von Benutzerkonten im Zarafa mit DB-Plugin und die ganzen Schritte mit externen
+Providern erleichtern.
 
 Das Programm wird wie folgt mit den optionen gestartet:
 
-python zcp-manager.py option
+python zcp-manager.py <option>
 
-folgende Optionen sind möglich:
+folgende optionen sind möglich:
 
 help -> listet die Hilfe auf
-
-config -> Öffnet die config datei mit dem Editor nano
+config -> oeffnet die config datei mit dem Editor nano
 
 Hinweis:
 Beim ersten mal Starten, erstellt das Programm selbständig unter bin die Datei config.py und öffnet Sie mit dem
