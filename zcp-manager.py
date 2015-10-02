@@ -36,7 +36,7 @@ def createconf():
         os.system(
             "cp " + curdir + sep + "bin" + sep + "config.py.orig" + " " + curdir + sep + "bin" + sep + "config.py")
         time.sleep(0.5)
-        os.system("nano " + curdir + sep + "bin" + sep + "config.py")
+        os.system("editor " + curdir + sep + "bin" + sep + "config.py")
         print("config.py erstellt")
 
 
@@ -50,7 +50,7 @@ def gpl_txt():
         """)
 
 
-def _help():
+def printhelp():
     helptxt = """
 ###########################################################################################
 #                                                                                         #
@@ -145,4 +145,4 @@ elif command == "list":
 elif command == "config":
     os.system("nano " + curdir + sep + "bin" + sep + "config.py")
 else:
-    _help()
+    printhelp()
