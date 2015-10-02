@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 ###########################################################################################################
 # zcp-manager - Zarafa Manager                                                                            #
-# Copyright (C) [2015]  [Guenter Bailey]                                                                  #
+# Copyright (C) [2015]  [Bailey]                                                                          #
 #                                                                                                         #
 # This program is free software;                                                                          #
 # you can redistribute it and/or modify it under the terms of the GNU General Public License              #
@@ -43,7 +43,7 @@ def createconf():
 def gpl_txt():
     print("""
 ###########################################################################################
-# zcp-manager Copyright (C) 2015  Guenter Bailey                                          #
+# zcp-manager Copyright (C) 2015  Bailey                                                  #
 # This program comes with ABSOLUTELY NO WARRANTY.                                         #
 # This is free software, and you are welcome to redistribute it under certain conditions. #
 ###########################################################################################
