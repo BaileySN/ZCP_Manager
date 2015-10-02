@@ -25,7 +25,7 @@ from bin import getmail4_template
 
 gt = getmail4_template.getmail4
 
-vernum = "0.3 "
+vernum = "0.4 "
 command = sys.argv[1]
 zcpadmin = "zarafa-admin"
 getmail_script_path = (sep + "home" + sep + "vmail" + sep + ".getmail" + sep)
@@ -95,8 +95,8 @@ def createmailuser(username, userpassword, fname, email, providerlogin, provider
         fname = email.replace('@', '.')
         f = open(getmail_script_path + fname, 'w')
         f.write(gt.g_retriever + "\n" +
-                "type = " + conf.getmail.retriever_type + "\n" +
-                "server = " + conf.getmail.retriever_server + "\n" +
+                "type = " + conf.RETRIEVER_TYPE + "\n" +
+                "server = " + conf.RETRIEVER_SERVER + "\n" +
                 "username = " + providerlogin + "\n" +
                 "password = " + providerpassword + "\n" +
                 "\n" +
@@ -108,13 +108,13 @@ def createmailuser(username, userpassword, fname, email, providerlogin, provider
                 gt.g_filter1 + "\n")
         f.close()
         os.system(
-            "chmod 660 " + getmail_script_path + fname + " &&chown " + conf.mail.mailuser + ":" + conf.mail.mailgroup + " " + getmail_script_path + fname)
+            "chmod 660 " + getmail_script_path + fname + " &&chown " + conf.MAILUSER + ":" + conf.MAILGROUP + " " + getmail_script_path + fname)
         ts(0.5)
         print("getmail4 script erstellt")
         print("Automatische Abholung anlegen")
-        cronjob = open(sep + "etc" + sep + "crontab", 'a')
+        cronjob = open(sep + "etc" + sep + "crontab", "a")
         cronjob.write(
-            conf.cronjob.time_minutes + " " + conf.cronjob.time_hours + " * * *" + "\t" + " vmail" + "\t" + " /usr/bin/getmail --rcfile ~/.getmail/" + fname + " &>/dev/null")
+            conf.TIME_MINUTES + " " + conf.TIME_HOURS + " * * *" + "\t" + " vmail" + "\t" + " /usr/bin/getmail --rcfile ~/.getmail/" + fname + " &>/dev/null")
         ts(0.5)
         os.system("service cron reload")
         print("Cronjob angelegt und neu geladen")
@@ -122,7 +122,6 @@ def createmailuser(username, userpassword, fname, email, providerlogin, provider
         ts(0.5)
     except IOError:
         print("Fehler bei der Benutzer Erstellung!")
-
 
 gpl_txt()
 createconf()
