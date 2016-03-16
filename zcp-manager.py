@@ -25,7 +25,7 @@ from bin import getmail4_template
 
 gt = getmail4_template.getmail4
 
-vernum = "0.4 "
+vernum = "0.5 "
 command = sys.argv[1]
 zcpadmin = "zarafa-admin"
 getmail_script_path = (sep + "home" + sep + "vmail" + sep + ".getmail" + sep)
@@ -132,9 +132,9 @@ if command == "createmailuser":
     userpasswd = raw_input("Benutzer Passwort fuer Login : ")
     fullname = raw_input("Vor- und Nachname : ")
     usermail = raw_input("E-Mail Adresse : ")
-    active = raw_input("Benutzer Active yes=1 no=0, default=1 : ")
-    if int(active) != int("0"):
-        active = "1"
+    active = raw_input("Benutzer Active yes=0 no=1, default=0 : ")
+    if int(active) != int("1"):
+        active = "0"
     print("Mailabholung")
     provider_login = raw_input("Provier Login : ")
     provider_passwd = raw_input("Provider Passwort : ")
