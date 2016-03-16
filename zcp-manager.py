@@ -87,7 +87,7 @@ def createmailuser(username, userpassword, fname, email, providerlogin, provider
     try:
         print("Benutzer im ZCP System anlegen")
         os.system(
-            zcpadmin + " " + "-u " + username + " -p " + userpassword + " -f " + '"' + fname + '"' + " -e " + email + " -n " + activeuser)
+            zcpadmin + " " + "-c " + username + " -p " + userpassword + " -f " + '"' + fname + '"' + " -e " + email + " -n " + activeuser)
         ts(0.5)
         os.system(zcpadmin + " --create-store " + username)
         ts(0.5)
