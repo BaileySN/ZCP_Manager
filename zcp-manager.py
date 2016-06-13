@@ -25,7 +25,7 @@ from bin import getmail4_template
 
 gt = getmail4_template.getmail4
 
-vernum = "0.5 "
+__version__ = "0.5a "
 command = sys.argv[1]
 zcpadmin = "zarafa-admin"
 getmail_script_path = (sep + "home" + sep + "vmail" + sep + ".getmail" + sep)
@@ -54,7 +54,7 @@ def printhelp():
     helptxt = """
 ###########################################################################################
 #                                                                                         #
-#                               ZCP Manager v%s                                         #
+#                               ZCP Manager v%s                                        #
 #-----------------------------------------------------------------------------------------#
 #                                                                                         #
 # Dieses Tool vereinfacht das Einrichten von Konten mit DB Plugin und getmail4.           #
@@ -77,7 +77,7 @@ def printhelp():
 # python zcp-manager.py help                                                              #
 #                                                                                         #
 ###########################################################################################
-        """ % vernum
+        """ % __version__
     print(helptxt)
 
 
@@ -114,7 +114,7 @@ def createmailuser(username, userpassword, fname, email, providerlogin, provider
         print("Automatische Abholung anlegen")
         cronjob = open(sep + "etc" + sep + "crontab", "a")
         cronjob.write(
-            conf.TIME_MINUTES + " " + conf.TIME_HOURS + " * * *" + "\t" + " vmail" + "\t" + " /usr/bin/getmail --rcfile ~/.getmail/" + fname + " &>/dev/null")
+            conf.TIME_MINUTES + " " + conf.TIME_HOURS + " * * *" + "\t" + " vmail" + "\t" + " /usr/bin/getmail --rcfile ~/.getmail/" + fname + " &>/dev/null" + "\n")
         ts(0.5)
         os.system("service cron reload")
         print("Cronjob angelegt und neu geladen")
@@ -133,7 +133,7 @@ if command == "createmailuser":
     fullname = raw_input("Vor- und Nachname : ")
     usermail = raw_input("E-Mail Adresse : ")
     active = raw_input("Benutzer Active yes=0 no=1, default=0 : ")
-    if int(active) != int("1"):
+    if int(active) != int("1") or int(active) == '':
         active = "0"
     print("Mailabholung")
     provider_login = raw_input("Provier Login : ")
