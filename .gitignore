@@ -1,0 +1,8 @@
+# pyCharm
+.idea/
+
+# project specified
+bin/config.py
+
+# python compiled files
+*.pyc
