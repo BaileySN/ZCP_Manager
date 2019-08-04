@@ -1,6 +1,8 @@
 # pyCharm
 .idea/
 
+# environment
+venv/
 # project specified
 bin/config.py
 
