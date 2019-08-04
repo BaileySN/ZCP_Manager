@@ -1,55 +1,57 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+"""
+Hier werden die Einstellungen fuer getmail (Mailabholung) eingestellt.
 
+RETRIEVER_TYPE = "BrokenUIDLPOP3SSLRetriever"
 
-# noinspection PyPep8Naming,PyClassHasNoInit
+folgende Typen gibt es:
 
-# Hier werden die Einstellungen fuer getmail (Mailabholung) eingestellt.
-#
-# RETRIEVER_TYPE = "BrokenUIDLPOP3SSLRetriever"
-#
-# folgende Typen gibt es:
-#
-# Info http://pyropus.ca/software/getmail/configuration.html#conf-retriever
-#
-# SimplePOP3Retriever — for single-user POP3 mail accounts.
-# BrokenUIDLPOP3Retriever — for broken POP3 servers that do not support the UIDL command, or which do not uniquely
-# identify messages; this provides basic support for single-user POP3 mail accounts on such servers.
-# SimpleIMAPRetriever — for single-user IMAP mail accounts.
-# SimplePOP3SSLRetriever — same as SimplePOP3Retriever, but uses SSL encryption.
-# BrokenUIDLPOP3SSLRetriever — same as BrokenUIDLPOP3Retriever, but uses SSL encryption.
-# SimpleIMAPSSLRetriever — same as SimpleIMAPRetriever, but uses SSL encryption.
-# MultidropPOP3Retriever — for domain mailbox (multidrop) POP3 mail accounts.
-# MultidropPOP3SSLRetriever — same as MultidropPOP3Retriever, but uses SSL encryption.
-# MultidropSDPSRetriever — for domain mailbox SDPS mail accounts, as provided by the UK ISP Demon.
-# MultidropIMAPRetriever — for domain mailbox (multidrop) IMAP mail accounts.
-# MultidropIMAPSSLRetriever — same as MultidropIMAPRetriever, but uses SSL encryption.
-#
-# Mailserver Hostname oder IP (Hostname wird bevorzugt)
-# RETRIEVER_SERVER = "pop.gmx.net"
+Info http://pyropus.ca/software/getmail/configuration.html#conf-retriever
+
+SimplePOP3Retriever — for single-user POP3 mail accounts.
+BrokenUIDLPOP3Retriever — for broken POP3 servers that do not support the UIDL command, or which do not uniquely
+identify messages; this provides basic support for single-user POP3 mail accounts on such servers.
+SimpleIMAPRetriever — for single-user IMAP mail accounts.
+SimplePOP3SSLRetriever — same as SimplePOP3Retriever, but uses SSL encryption.
+BrokenUIDLPOP3SSLRetriever — same as BrokenUIDLPOP3Retriever, but uses SSL encryption.
+SimpleIMAPSSLRetriever — same as SimpleIMAPRetriever, but uses SSL encryption.
+MultidropPOP3Retriever — for domain mailbox (multidrop) POP3 mail accounts.
+MultidropPOP3SSLRetriever — same as MultidropPOP3Retriever, but uses SSL encryption.
+MultidropSDPSRetriever — for domain mailbox SDPS mail accounts, as provided by the UK ISP Demon.
+MultidropIMAPRetriever — for domain mailbox (multidrop) IMAP mail accounts.
+MultidropIMAPSSLRetriever — same as MultidropIMAPRetriever, but uses SSL encryption.
+
+Mailserver Hostname oder IP (Hostname wird bevorzugt)
+RETRIEVER_SERVER = "pop.gmx.net"
+"""
+
 
 RETRIEVER_TYPE = "BrokenUIDLPOP3SSLRetriever"
 RETRIEVER_SERVER = "pop.gmx.net"
 
+"""
+In welchen Zeit Abstaenden die E-Mail abgeholt werden soll.
 
-# noinspection PyPep8Naming,PyClassHasNoInit
+TIME_MINUTES = */5 => alle 5 Minuten wird die Mail abgeholt oder nur 5 bedeutet die Mail wird 5 nach der vollen
+Stunde abgeholt.
 
-# In welchen Zeit Abstaenden die E-Mail abgeholt werden soll.
-#
-# TIME_MINUTES = */5 => alle 5 Minuten wird die Mail abgeholt oder nur 5 bedeutet die Mail wird 5 nach der vollen
-# Stunde abgeholt.
-#
-# TIME_HOURS = von 6 bis 23 (24-Stunden Format) wird die E-Mail abgeholt oder mit einem * (Asterisk) wird die E-Mail
-# immer abgeholt ohne Ruhezeit.
+TIME_HOURS = von 6 bis 23 (24-Stunden Format) wird die E-Mail abgeholt oder mit einem * (Asterisk) wird die E-Mail
+immer abgeholt ohne Ruhezeit.
+"""
+
 
 TIME_MINUTES = "*/5"
 TIME_HOURS = "6-23"
 
+"""
+System E-Mail Benutzer und Gruppe.
+Wird fuer das setzen der Rechte gebraucht.
+"""
 
-# noinspection PyPep8Naming,PyClassHasNoInit
-
-# System E-Mail Benutzer und Gruppe.
-# Wird fuer das setzen der Rechte gebraucht.
 
 MAILUSER = "vmail"
 MAILGROUP = "vmail"
+GETMAIL_PATH = "/home/vmail/.getmail"
+CRON_RELOAD = ["systemctl",  "reload", "cron"]
+
+KOPANO_ADMIN_PATH = '/usr/bin/kopano-admin'
+EXTERNAL_PROVIDER = True
