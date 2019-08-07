@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 ###########################################################################################################
 # kopano-manager - Kopano Manager                                                                         #
@@ -223,7 +223,7 @@ class App():
         parser.add_argument("--provider-login", action="store", dest="provider_login", help="Getmail Provider Login")
         parser.add_argument("--provider-password", action="store", dest="provider_password",
                             help="Getmail Provider Password")
-        parser.add_argument("--listuser", action="store", dest="kopano_list", help="List Kopano Users")
+        parser.add_argument("--listuser", action="store_true", dest="kopano_list", help="List Kopano Users")
         parser.add_argument("--kopano-create-user", action="store_true", default=False, dest="kp_create_user",
                             help="create only kopano user")
         parser.add_argument("--create-getmail", action="store_true", default=False, dest="create_getmail",
