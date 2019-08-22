@@ -23,6 +23,7 @@ from os import sep, curdir
 from argparse import ArgumentParser
 from bin import __version__, gpl_header
 from subprocess import Popen, PIPE
+import csv
 
 
 def createconf():
@@ -103,6 +104,17 @@ class KopanoBase(object):
             print(result.decode())
         except ValueError:
             exit(12)
+
+    def change_user_password(self, login, password):
+        try:
+            oscmd = [self.kpadmin, "-u", login, '-p', password]
+            p1 = Popen(oscmd, stdout=PIPE)
+            result, error = p1.communicate()
+            if error:
+                raise ValueError(error.decode())
+            return result.decode()
+        except ValueError as exp:
+            return "{}".format(exp)
 
 
 class GetmailTask(KopanoBase):
@@ -228,6 +240,10 @@ class App():
                             help="create only kopano user")
         parser.add_argument("--create-getmail", action="store_true", default=False, dest="create_getmail",
                             help="create getmail script and cronjob")
+        parser.add_argument("--changepasswd", action="store_true", default=False, dest="kp_ch_pwd",
+                            help="change Kopano user password")
+        parser.add_argument("--file", action="store", dest="credfile",
+                            help="file with credentials as csv. example User,Password")
         options = parser.parse_args()
 
         try:
@@ -287,6 +303,20 @@ class App():
                 KopanoBase().list_user()
             elif options.config:
                 os.system("nano "+curdir+sep+"bin"+sep+"config.py")
+            elif options.kp_ch_pwd and options.credfile:
+                with open(options.credfile, newline='') as csvfile:
+                    f = csv.DictReader(csvfile)
+                    for row in f:
+                        result = KopanoBase().change_user_password(login=row['User'], password=row['Password'])
+                        print("{}".format(result))
+                print("change Kopano user password Finish")
+            elif options.kp_ch_pwd:
+                for opt in options_list[:2]:
+                    if not opt[0]:
+                        raise ValueError('No {}'.format(opt[1]))
+                result = KopanoBase().change_user_password(login=options.kopano_user, password=options.kopano_password)
+                print("{}".format(result))
+                exit(0)
             else:
                 raise IndexError()
         except IndexError:
